@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+<meta charset="utf-8">
+<style>
+
+body {
+  font: 16px sans-serif;
+  background-color: #f2f2f2;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.dot {
+  stroke: #000;
+}
+
+.dot:hover{
+  opacity: 0.5;
+}
+
+.d3-tip {
+        line-height: 1;
+        font-weight: bold;
+        padding: 12px;
+        background: rgba(0, 0, 0, 0.8);
+        color: #fff;
+        border-radius: 2px;
+      }
+strong {
+  color: grey;
+}
+
+.legend {
+  position: fixed;
+  bottom: 10;
+  right: 40;
+}
+
+</style>
+<body>
+
+<div class="container">                 
+  <ul class="nav nav-pills">
+    <li class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#">Siječanj<span class="caret"></span></a>
+      <ul class="dropdown-menu" onclick="buttonclick()">
+        <li><a href="#">Bar Chart 1</a></li>                       
+      </ul>
+    </li>
+    <li class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#">Veljača<span class="caret"></span></a>
+      <ul class="dropdown-menu" onclick="buttonclick1()">
+        <li><a href="#">Bar Chart 1</a></li>                       
+      </ul>
+    </li>
+    <li class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#">Ožujak<span class="caret"></span></a>
+      <ul class="dropdown-menu" onclick="buttonclick2()">
+        <li><a href="#">Bar Chart 1</a></li>                       
+      </ul>
+    </li>
+    <li class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#">Travanj<span class="caret"></span></a>
+      <ul class="dropdown-menu" onclick="buttonclick3()">
+        <li><a href="#">Bar Chart 1</a></li>                       
+      </ul>
+    </li>
+    <li class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#">Svibanj<span class="caret"></span></a>
+      <ul class="dropdown-menu" onclick="buttonclick4()">
+        <li><a href="#">Bar Chart 1</a></li>                       
+      </ul>
+    </li>
+    <li class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#">Lipanj<span class="caret"></span></a>
+      <ul class="dropdown-menu" onclick="buttonclick5()">
+        <li><a href="#">Bar Chart 1</a></li>                       
+      </ul>
+    </li>
+    <li class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#">Srpanj<span class="caret"></span></a>
+      <ul class="dropdown-menu" onclick="buttonclick6()">
+        <li><a href="#">Bar Chart 1</a></li>                       
+      </ul>
+    </li>
+    <li class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#">Kolovoz<span class="caret"></span></a>
+      <ul class="dropdown-menu" onclick="buttonclick7()">
+        <li><a href="#">Bar Chart 1</a></li>                       
+      </ul>
+    </li>
+    <li class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#">Rujan<span class="caret"></span></a>
+      <ul class="dropdown-menu" onclick="buttonclick8()">
+        <li><a href="#">Bar Chart 1</a></li>                       
+      </ul>
+    </li>
+    <li class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#">Listopad<span class="caret"></span></a>
+      <ul class="dropdown-menu" onclick="buttonclick9()">
+        <li><a href="#">Bar Chart 1</a></li>                       
+      </ul>
+    </li>
+    <li class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#">Studeni<span class="caret"></span></a>
+      <ul class="dropdown-menu" onclick="buttonclick10()">
+        <li><a href="#">Bar Chart 1</a></li>                       
+      </ul>
+    </li>
+    <li class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#">Prosinac<span class="caret"></span></a>
+      <ul class="dropdown-menu" onclick="buttonclick11()">
+        <li><a href="#">Bar Chart 1</a></li>                       
+      </ul>
+    </li>
+  </ul>
+</div>
+<script src="//d3js.org/d3.v3.min.js"></script>
+<script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+<script>
+
+var margin = {top: 50, right: 10, bottom: 20, left: 100},
+    width = 1260 - margin.left - margin.right,
+    height = 600 - margin.top - margin.bottom;
+
+var x = d3.scale.linear()
+    .range([0, width]);
+
+var y = d3.scale.linear()
+    .range([height, 0]);
+
+var color = d3.scale.category10();
+
+var xAxis = d3.svg.axis()
+    .scale(x)
+    .orient("bottom")
+    .tickValues([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31]);;
+
+var yAxis = d3.svg.axis()
+    .scale(y)
+    .orient("left")
+    .tickValues([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24]);
+
+var tip = d3.tip()
+    .attr('class', 'd3-tip')
+    .direction('e')
+    .offset([0, 20])
+    .html(function(d) {
+      return '<table id="tiptable"><strong> Zapis  :   </strong>' + d.species + 
+                            " <br> <strong> Pozivatelj :  </strong>" +d.ime+ 
+                            " <br> <strong> Vrijeme :  </strong>" +d.vrijeme+ 
+                            " <br> <strong> Trajanje :  </strong>" +d.trajanje+ "</table>";
+  })
+
+
+
+var svg = d3.select("body").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+
+svg.call(tip);
+
+
+d3.tsv("data.tsv", function(error, data) {
+  if (error) throw error;
+
+  data.forEach(function(d) {
+    d.sepalLength = +d.sepalLength;
+    d.sepalWidth = +d.sepalWidth;
+  });
+
+  x.domain(d3.extent(data, function(d) { return d.sepalWidth; })).nice();
+  y.domain(d3.extent(data, function(d) { return d.sepalLength; })).nice();
+
+  svg.append("g")
+      .attr("class", "x axis")
+      .attr("transform", "translate(0," + height + ")")
+      .call(xAxis)
+    .append("text")
+      .attr("class", "label")
+      .attr("x", width)
+      .attr("y", -6)
+      .style("text-anchor", "end")
+      .text("Dani");
+
+  svg.append("g")
+      .attr("class", "y axis")
+      .call(yAxis)
+    .append("text")
+      .attr("class", "label")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 6)
+      .attr("dy", ".71em")
+      .style("text-anchor", "end")
+      .text("Sati")
+
+  svg.selectAll(".dot")
+      .data(data)
+    .enter().append("circle")
+      .attr("class", "dot")
+      .attr("r", 5)
+      .attr("cx", function(d) { return x(d.sepalWidth); })
+      .attr("cy", function(d) { return y(d.sepalLength); })
+      .style("fill", function(d) { return color(d.species); })
+      .on('mouseover', tip.show)
+      .on('mouseout', tip.hide);
+
+
+
+  var legend = svg.selectAll(".legend")
+      .data(color.domain())
+    .enter().append("g")
+      .attr("class", "legend")
+      .attr("transform", function(d, i) { return "translate(20," + i * 20 + ")"; });
+
+  legend.append("rect")
+      .attr("x", width - 18)
+      .attr("width", 18)
+      .attr("height", 18)
+      .style("fill", color);
+
+  legend.append("text")
+      .attr("x", width - 24)
+      .attr("y", 9)
+      .attr("dy", ".35em")
+      .style("text-anchor", "end")
+      .text(function(d) { return d; });
+
+});
+
+function buttonclick(){
+  window.location="http://127.0.0.1:8887/barchart.html";
+}
+function buttonclick1(){
+  window.location="http://127.0.0.1:8887/barchart1.html";
+}
+function buttonclick2(){
+  window.location="http://127.0.0.1:8887/barchart2.html";
+}
+function buttonclick3(){
+  window.location="http://127.0.0.1:8887/barchart3.html";
+}
+function buttonclick4(){
+  window.location="http://127.0.0.1:8887/barchart4.html";
+}
+function buttonclick5(){
+  window.location="http://127.0.0.1:8887/barchart5.html";
+}
+function buttonclick6(){
+  window.location="http://127.0.0.1:8887/barchart6.html";
+}
+function buttonclick7(){
+  window.location="http://127.0.0.1:8887/barchart7.html";
+}
+function buttonclick8(){
+  window.location="http://127.0.0.1:8887/barchart8.html";
+}
+function buttonclick9(){
+  window.location="http://127.0.0.1:8887/barchart9.html";
+}
+function buttonclick10(){
+  window.location="http://127.0.0.1:8887/barchart10.html";
+}
+function buttonclick11(){
+  window.location="http://127.0.0.1:8887/barchart11.html";
+}
+
+</script>
+</body>
