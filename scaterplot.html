@@ -225,16 +225,22 @@ d3.tsv("data.tsv", function(error, data) {
         .attr('r', function(d){ 
         var returnRadius;
         if (d.trajanje === "0 min 0 sec") {returnRadius = 5;}
-        if (d.trajanje === "2 min 43 sec") {returnRadius = 8;}
-        if (d.trajanje === "3 min 40 sec") {returnRadius = 11;}
-        if (d.trajanje === "9 min 13 sec") {returnRadius = 17;}
-        if (d.trajanje === "13 min 23 sec") {returnRadius = 25;}
-        if (d.trajanje === "29 min 03 sec") {returnRadius = 30;}
-        if (d.trajanje === "30 min 22 sec") {returnRadius = 32;}
-        if (d.trajanje === "41 min 33 sec") {returnRadius = 45;}
+        if (d.trajanje === "2 min 43 sec") {returnRadius = 10;}
+        if (d.trajanje === "3 min 40 sec") {returnRadius = 15;}
+        if (d.trajanje === "9 min 13 sec") {returnRadius = 25;}
+        if (d.trajanje === "13 min 23 sec") {returnRadius = 35;}
+        if (d.trajanje === "29 min 03 sec") {returnRadius = 50;}
+        if (d.trajanje === "30 min 22 sec") {returnRadius = 55;}
+        if (d.trajanje === "41 min 33 sec") {returnRadius = 70;}
+        
         
         return returnRadius;
       });
+        d3.select(this)
+        .transition()
+        .delay(2000)
+        .duration(1000)
+        .attr('r', 5);
       });
 
   var legend = svg.selectAll(".legend")
