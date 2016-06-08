@@ -54,74 +54,86 @@ strong {
   <ul class="nav nav-pills">
     <li class="dropdown">
       <a class="dropdown-toggle" data-toggle="dropdown" href="#">Siječanj<span class="caret"></span></a>
-      <ul class="dropdown-menu" onclick="buttonclick()">
-        <li><a href="#">Broj poziva</a></li>                       
+      <ul class="dropdown-menu">
+        <li onclick="buttonclicks()"><a href="#">Detalji poziva</a></li> 
+        <li onclick="buttonclick()"><a href="#">Broj poziva</a></li>                       
       </ul>
     </li>
     <li class="dropdown">
       <a class="dropdown-toggle" data-toggle="dropdown" href="#">Veljača<span class="caret"></span></a>
-      <ul class="dropdown-menu" onclick="buttonclick1()">
-        <li><a href="#">Broj Poziva</a></li>                       
+      <ul class="dropdown-menu">
+        <li onclick="buttonclicks1()"><a href="#">Detalji poziva</a></li> 
+        <li onclick="buttonclick1()"><a href="#">Broj poziva</a></li>                       
       </ul>
     </li>
     <li class="dropdown">
       <a class="dropdown-toggle" data-toggle="dropdown" href="#">Ožujak<span class="caret"></span></a>
-      <ul class="dropdown-menu" onclick="buttonclick2()">
-        <li><a href="#">Broj Poziva</a></li>                       
+      <ul class="dropdown-menu">
+        <li onclick="buttonclicks2()"><a href="#">Detalji poziva</a></li> 
+        <li onclick="buttonclick2()"><a href="#">Broj poziva</a></li>                       
       </ul>
     </li>
     <li class="dropdown">
       <a class="dropdown-toggle" data-toggle="dropdown" href="#">Travanj<span class="caret"></span></a>
-      <ul class="dropdown-menu" onclick="buttonclick3()">
-        <li><a href="#">Broj Poziva</a></li>                       
+      <ul class="dropdown-menu">
+        <li onclick="buttonclicks3()"><a href="#">Detalji poziva</a></li> 
+        <li onclick="buttonclick3()"><a href="#">Broj poziva</a></li>                       
       </ul>
     </li>
     <li class="dropdown">
       <a class="dropdown-toggle" data-toggle="dropdown" href="#">Svibanj<span class="caret"></span></a>
-      <ul class="dropdown-menu" onclick="buttonclick4()">
-        <li><a href="#">Broj Poziva</a></li>                       
+      <ul class="dropdown-menu">
+        <li onclick="buttonclicks4()"><a href="#">Detalji poziva</a></li> 
+        <li onclick="buttonclick4()"><a href="#">Broj poziva</a></li>                       
       </ul>
     </li>
     <li class="dropdown">
       <a class="dropdown-toggle" data-toggle="dropdown" href="#">Lipanj<span class="caret"></span></a>
-      <ul class="dropdown-menu" onclick="buttonclick5()">
-        <li><a href="#">Broj Poziva</a></li>                       
+      <ul class="dropdown-menu">
+        <li onclick="buttonclicks5()"><a href="#">Detalji poziva</a></li> 
+        <li onclick="buttonclick5()"><a href="#">Broj poziva</a></li>                       
       </ul>
     </li>
     <li class="dropdown">
       <a class="dropdown-toggle" data-toggle="dropdown" href="#">Srpanj<span class="caret"></span></a>
-      <ul class="dropdown-menu" onclick="buttonclick6()">
-        <li><a href="#">Broj Poziva</a></li>                       
+      <ul class="dropdown-menu">
+        <li onclick="buttonclicks6()"><a href="#">Detalji poziva</a></li> 
+        <li onclick="buttonclick6()"><a href="#">Broj poziva</a></li>                       
       </ul>
     </li>
     <li class="dropdown">
       <a class="dropdown-toggle" data-toggle="dropdown" href="#">Kolovoz<span class="caret"></span></a>
-      <ul class="dropdown-menu" onclick="buttonclick7()">
-        <li><a href="#">Broj Poziva</a></li>                       
+      <ul class="dropdown-menu">
+        <li onclick="buttonclicks7()"><a href="#">Detalji poziva</a></li> 
+        <li onclick="buttonclick7()"><a href="#">Broj poziva</a></li>                       
       </ul>
     </li>
     <li class="dropdown">
       <a class="dropdown-toggle" data-toggle="dropdown" href="#">Rujan<span class="caret"></span></a>
-      <ul class="dropdown-menu" onclick="buttonclick8()">
-        <li><a href="#">Broj Poziva</a></li>                       
+      <ul class="dropdown-menu">
+        <li onclick="buttonclicks8()"><a href="#">Detalji poziva</a></li> 
+        <li onclick="buttonclick8()"><a href="#">Broj poziva</a></li>                       
       </ul>
     </li>
     <li class="dropdown">
       <a class="dropdown-toggle" data-toggle="dropdown" href="#">Listopad<span class="caret"></span></a>
-      <ul class="dropdown-menu" onclick="buttonclick9()">
-        <li><a href="#">Broj Poziva</a></li>                       
+      <ul class="dropdown-menu">
+        <li onclick="buttonclicks9()"><a href="#">Detalji poziva</a></li> 
+        <li onclick="buttonclick9()"><a href="#">Broj poziva</a></li>                       
       </ul>
     </li>
     <li class="dropdown">
       <a class="dropdown-toggle" data-toggle="dropdown" href="#">Studeni<span class="caret"></span></a>
-      <ul class="dropdown-menu" onclick="buttonclick10()">
-        <li><a href="#">Broj Poziva</a></li>                       
+      <ul class="dropdown-menu">
+        <li onclick="buttonclicks10()"><a href="#">Detalji poziva</a></li> 
+        <li onclick="buttonclick10()"><a href="#">Broj poziva</a></li>                       
       </ul>
     </li>
     <li class="dropdown">
       <a class="dropdown-toggle" data-toggle="dropdown" href="#">Prosinac<span class="caret"></span></a>
-      <ul class="dropdown-menu" onclick="buttonclick11()">
-        <li><a href="#">Broj Poziva</a></li>                       
+      <ul class="dropdown-menu">
+        <li onclick="buttonclicks11()"><a href="#">Detalji poziva</a></li> 
+        <li onclick="buttonclick11()"><a href="#">Broj poziva</a></li>                       
       </ul>
     </li>
   </ul>
@@ -267,38 +279,74 @@ d3.tsv("data.tsv", function(error, data) {
 function buttonclick(){
   window.location="barchart.html";
 }
+function buttonclicks(){
+  window.location="scaterplot.html";
+}
 function buttonclick1(){
   window.location="barchart1.html";
 }
+function buttonclicks1(){
+  window.location="scaterplot.html";
+}
 function buttonclick2(){
-  window.location="barchart2.html";
+  window.location="barchart.html";
+}
+function buttonclicks2(){
+  window.location="scaterplot.html";
 }
 function buttonclick3(){
-  window.location="barchart3.html";
+  window.location="barchart1.html";
+}
+function buttonclicks3(){
+  window.location="scaterplot.html";
 }
 function buttonclick4(){
-  window.location="barchart4.html";
+  window.location="barchart.html";
+}
+function buttonclicks4(){
+  window.location="scaterplot.html";
 }
 function buttonclick5(){
-  window.location="barchart5.html";
+  window.location="barchart1.html";
+}
+function buttonclicks5(){
+  window.location="scaterplot.html";
 }
 function buttonclick6(){
-  window.location="barchart6.html";
+  window.location="barchart.html";
+}
+function buttonclicks6(){
+  window.location="scaterplot.html";
 }
 function buttonclick7(){
-  window.location="barchart7.html";
+  window.location="barchart1.html";
+}
+function buttonclicks7(){
+  window.location="scaterplot.html";
 }
 function buttonclick8(){
-  window.location="barchart8.html";
+  window.location="barchart.html";
+}
+function buttonclicks8(){
+  window.location="scaterplot.html";
 }
 function buttonclick9(){
-  window.location="barchart9.html";
+  window.location="barchart1.html";
+}
+function buttonclicks9(){
+  window.location="scaterplot.html";
 }
 function buttonclick10(){
-  window.location="barchart10.html";
+  window.location="barchart.html";
+}
+function buttonclicks10(){
+  window.location="scaterplot.html";
 }
 function buttonclick11(){
-  window.location="barchart11.html";
+  window.location="barchart1.html";
+}
+function buttonclicks11(){
+  window.location="scaterplot.html";
 }
 
 </script>
