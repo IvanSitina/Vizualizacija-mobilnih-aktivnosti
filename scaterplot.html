@@ -26,6 +26,7 @@ body {
 
 .dot:hover{
   opacity: 0.5;
+     
 }
 
 .d3-tip {
@@ -54,73 +55,73 @@ strong {
     <li class="dropdown">
       <a class="dropdown-toggle" data-toggle="dropdown" href="#">Siječanj<span class="caret"></span></a>
       <ul class="dropdown-menu" onclick="buttonclick()">
-        <li><a href="#">Bar Chart 1</a></li>                       
+        <li><a href="#">Broj poziva</a></li>                       
       </ul>
     </li>
     <li class="dropdown">
       <a class="dropdown-toggle" data-toggle="dropdown" href="#">Veljača<span class="caret"></span></a>
       <ul class="dropdown-menu" onclick="buttonclick1()">
-        <li><a href="#">Bar Chart 1</a></li>                       
+        <li><a href="#">Broj Poziva</a></li>                       
       </ul>
     </li>
     <li class="dropdown">
       <a class="dropdown-toggle" data-toggle="dropdown" href="#">Ožujak<span class="caret"></span></a>
       <ul class="dropdown-menu" onclick="buttonclick2()">
-        <li><a href="#">Bar Chart 1</a></li>                       
+        <li><a href="#">Broj Poziva</a></li>                       
       </ul>
     </li>
     <li class="dropdown">
       <a class="dropdown-toggle" data-toggle="dropdown" href="#">Travanj<span class="caret"></span></a>
       <ul class="dropdown-menu" onclick="buttonclick3()">
-        <li><a href="#">Bar Chart 1</a></li>                       
+        <li><a href="#">Broj Poziva</a></li>                       
       </ul>
     </li>
     <li class="dropdown">
       <a class="dropdown-toggle" data-toggle="dropdown" href="#">Svibanj<span class="caret"></span></a>
       <ul class="dropdown-menu" onclick="buttonclick4()">
-        <li><a href="#">Bar Chart 1</a></li>                       
+        <li><a href="#">Broj Poziva</a></li>                       
       </ul>
     </li>
     <li class="dropdown">
       <a class="dropdown-toggle" data-toggle="dropdown" href="#">Lipanj<span class="caret"></span></a>
       <ul class="dropdown-menu" onclick="buttonclick5()">
-        <li><a href="#">Bar Chart 1</a></li>                       
+        <li><a href="#">Broj Poziva</a></li>                       
       </ul>
     </li>
     <li class="dropdown">
       <a class="dropdown-toggle" data-toggle="dropdown" href="#">Srpanj<span class="caret"></span></a>
       <ul class="dropdown-menu" onclick="buttonclick6()">
-        <li><a href="#">Bar Chart 1</a></li>                       
+        <li><a href="#">Broj Poziva</a></li>                       
       </ul>
     </li>
     <li class="dropdown">
       <a class="dropdown-toggle" data-toggle="dropdown" href="#">Kolovoz<span class="caret"></span></a>
       <ul class="dropdown-menu" onclick="buttonclick7()">
-        <li><a href="#">Bar Chart 1</a></li>                       
+        <li><a href="#">Broj Poziva</a></li>                       
       </ul>
     </li>
     <li class="dropdown">
       <a class="dropdown-toggle" data-toggle="dropdown" href="#">Rujan<span class="caret"></span></a>
       <ul class="dropdown-menu" onclick="buttonclick8()">
-        <li><a href="#">Bar Chart 1</a></li>                       
+        <li><a href="#">Broj Poziva</a></li>                       
       </ul>
     </li>
     <li class="dropdown">
       <a class="dropdown-toggle" data-toggle="dropdown" href="#">Listopad<span class="caret"></span></a>
       <ul class="dropdown-menu" onclick="buttonclick9()">
-        <li><a href="#">Bar Chart 1</a></li>                       
+        <li><a href="#">Broj Poziva</a></li>                       
       </ul>
     </li>
     <li class="dropdown">
       <a class="dropdown-toggle" data-toggle="dropdown" href="#">Studeni<span class="caret"></span></a>
       <ul class="dropdown-menu" onclick="buttonclick10()">
-        <li><a href="#">Bar Chart 1</a></li>                       
+        <li><a href="#">Broj Poziva</a></li>                       
       </ul>
     </li>
     <li class="dropdown">
       <a class="dropdown-toggle" data-toggle="dropdown" href="#">Prosinac<span class="caret"></span></a>
       <ul class="dropdown-menu" onclick="buttonclick11()">
-        <li><a href="#">Bar Chart 1</a></li>                       
+        <li><a href="#">Broj Poziva</a></li>                       
       </ul>
     </li>
   </ul>
@@ -140,6 +141,7 @@ var y = d3.scale.linear()
     .range([height, 0]);
 
 var color = d3.scale.category10();
+
 
 var xAxis = d3.svg.axis()
     .scale(x)
@@ -211,14 +213,25 @@ d3.tsv("data.tsv", function(error, data) {
       .data(data)
     .enter().append("circle")
       .attr("class", "dot")
-      .attr("r", 5)
+      .attr('r', function(d){ 
+        var returnRadius;
+
+        if (d.trajanje === "0 min 0 sec") {returnRadius = 5;}
+        if (d.trajanje === "2 min 43 sec") {returnRadius = 8;}
+        if (d.trajanje === "3 min 40 sec") {returnRadius = 11;}
+        if (d.trajanje === "9 min 13 sec") {returnRadius = 17;}
+        if (d.trajanje === "13 min 23 sec") {returnRadius = 25;}
+        if (d.trajanje === "29 min 03 sec") {returnRadius = 30;}
+        if (d.trajanje === "30 min 22 sec") {returnRadius = 32;}
+        if (d.trajanje === "41 min 33 sec") {returnRadius = 45;}
+        
+        return returnRadius;
+      })
       .attr("cx", function(d) { return x(d.sepalWidth); })
       .attr("cy", function(d) { return y(d.sepalLength); })
       .style("fill", function(d) { return color(d.species); })
       .on('mouseover', tip.show)
       .on('mouseout', tip.hide);
-
-
 
   var legend = svg.selectAll(".legend")
       .data(color.domain())
@@ -242,40 +255,40 @@ d3.tsv("data.tsv", function(error, data) {
 });
 
 function buttonclick(){
-  window.location="http://127.0.0.1:8887/barchart.html";
+  window.location="barchart.html";
 }
 function buttonclick1(){
-  window.location="http://127.0.0.1:8887/barchart1.html";
+  window.location="barchart1.html";
 }
 function buttonclick2(){
-  window.location="http://127.0.0.1:8887/barchart2.html";
+  window.location="barchart2.html";
 }
 function buttonclick3(){
-  window.location="http://127.0.0.1:8887/barchart3.html";
+  window.location="barchart3.html";
 }
 function buttonclick4(){
-  window.location="http://127.0.0.1:8887/barchart4.html";
+  window.location="barchart4.html";
 }
 function buttonclick5(){
-  window.location="http://127.0.0.1:8887/barchart5.html";
+  window.location="barchart5.html";
 }
 function buttonclick6(){
-  window.location="http://127.0.0.1:8887/barchart6.html";
+  window.location="barchart6.html";
 }
 function buttonclick7(){
-  window.location="http://127.0.0.1:8887/barchart7.html";
+  window.location="barchart7.html";
 }
 function buttonclick8(){
-  window.location="http://127.0.0.1:8887/barchart8.html";
+  window.location="barchart8.html";
 }
 function buttonclick9(){
-  window.location="http://127.0.0.1:8887/barchart9.html";
+  window.location="barchart9.html";
 }
 function buttonclick10(){
-  window.location="http://127.0.0.1:8887/barchart10.html";
+  window.location="barchart10.html";
 }
 function buttonclick11(){
-  window.location="http://127.0.0.1:8887/barchart11.html";
+  window.location="barchart11.html";
 }
 
 </script>
