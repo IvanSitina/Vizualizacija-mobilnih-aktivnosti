@@ -1,4 +1,4 @@
-sepalLength	sepalWidth	ime	vrijeme	species	trajanje
+sepalLength	sepalWidth	pozivatelj	vrijeme	zapis	trajanje
 9	1	Josip	9:11	dolazni poziv	0 min 20 sec
 7	1	Miroslav	7:23	dolazni poziv	3 min 40 sec
 19	1	Jelena	19:04	dolazni poziv	10 min 39 sec
