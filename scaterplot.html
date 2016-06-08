@@ -165,7 +165,6 @@ var tip = d3.tip()
   })
 
 
-
 var svg = d3.select("body").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
@@ -213,9 +212,18 @@ d3.tsv("data.tsv", function(error, data) {
       .data(data)
     .enter().append("circle")
       .attr("class", "dot")
-      .attr('r', function(d){ 
+      .attr('r', 5)
+      .attr("cx", function(d) { return x(d.sepalWidth); })
+      .attr("cy", function(d) { return y(d.sepalLength); })
+      .style("fill", function(d) { return color(d.species); })
+      .on('mouseover', tip.show)
+      .on('mouseout', tip.hide)
+      .on("click", function() {
+        d3.select(this)
+        .transition()
+        .duration(1000)
+        .attr('r', function(d){ 
         var returnRadius;
-
         if (d.trajanje === "0 min 0 sec") {returnRadius = 5;}
         if (d.trajanje === "2 min 43 sec") {returnRadius = 8;}
         if (d.trajanje === "3 min 40 sec") {returnRadius = 11;}
@@ -226,12 +234,8 @@ d3.tsv("data.tsv", function(error, data) {
         if (d.trajanje === "41 min 33 sec") {returnRadius = 45;}
         
         return returnRadius;
-      })
-      .attr("cx", function(d) { return x(d.sepalWidth); })
-      .attr("cy", function(d) { return y(d.sepalLength); })
-      .style("fill", function(d) { return color(d.species); })
-      .on('mouseover', tip.show)
-      .on('mouseout', tip.hide);
+      });
+      });
 
   var legend = svg.selectAll(".legend")
       .data(color.domain())
