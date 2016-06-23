@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+<meta charset="utf-8">
+<style>
+
+body {
+  font: 16px sans-serif;
+  background-color: #f2f2f2;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+h1 {
+    text-shadow: 2px 2px 5px blue;
+}
+
+img{
+  text-align: center;
+}
+h4{
+  
+}
+div{
+  text-align: center;
+}
+pre{
+  text-align: justify;
+  }
+
+#googleMap {
+    width: 100%; /* Span the entire width of the screen */
+    height: 350px; /* Set the height to 400 pixels */
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
+}
+</style>
+<body>
+
+
+  <div class="jumbotron">
+    <h1>VIZUALIZACIJA PODATAKA</h1>
+
+    <div class="container">
+      <br>
+  <!-- Trigger the modal with a button -->
+  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Upute za korištenje</button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">VIZUALIZACIJA MOBILNIH AKTIVNOSTI</h4>
+          <br>
+          <h4 class="modal-title">Ivan Šitina</h4>
+          <h4 class="modal-title">Informacijske i podatkovne znanosti</h4>
+        </div>
+        <div class="modal-body">
+          <pre>
+            Na adresi <a href="http://www.etfos.unios.hr/~isitina/">http://www.etfos.unios.hr/~isitina/</a> nalazi se projekt Vizualizacija mobilnih 
+            aktivnosti koji je napravljan u sklopu kolegija "Vizualizacija podataka" na 1. godini diplomskog studija
+            Elektrotehničkog fakulteta u Osijeku.
+            Klik na ruku odvest će Vas na početnu stranicu projekta gdje su na scaterplotu prikazani podaci
+            dolaznih, odlaznih i odbijenih poziva za pojedine mjesece u godini.
+            Na samom vrhu nalazi se popis mjeseci u godini koji nude pregled "Detalji poziva", "Broj poziva" i 
+            "Ispis poziva".
+            Na detaljima poziva moguće je, dovlačenjem miša na točku, vidjeti vrstu poziva, pozivatelja, vrijeme 
+            i trajanje poziva. Klikom na točkicu, točkica će se raširiti onoliko koliko je poziv trajao.
+            Na barchartu koji prikazuje broj poziva za svaki dan u mjesecu moguće je klikom na legendu ukoloniti
+            vizualizacije koje ne želimo da se prikažu, npr. ukolniti broj odbijenih poziva. Dovlačenjem miša na
+            svaki bar prikazuje se  datum i omjer zabilježenih poziva.
+            U ispisu poziva može se vidjeti izvorni dokument pomoću kojeg su napravljene vizualizacije.
+          </pre>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Zatvori</button>
+        </div>
+      </div>
+    </div>
+  </div>
+<br>
+<center> 
+<a href="scaterplot.html"> <img img src="strijela.png"width="75" height="100"></a>
+</center>
+</div>
+<div id="googleMap"></div>
+
+<script src="//d3js.org/d3.v3.min.js"></script>
+<script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+<script src="http://maps.googleapis.com/maps/api/js"></script>
+<script>
+var myCenter = new google.maps.LatLng(45.5511111, 18.6938889);
+
+function initialize() {
+var mapProp = {
+center:myCenter,
+zoom:12,
+scrollwheel:false,
+draggable:false,
+mapTypeId:google.maps.MapTypeId.ROADMAP
+};
+
+var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+
+var marker = new google.maps.Marker({
+position:myCenter,
+});
+
+marker.setMap(map);
+}
+
+google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+</body>
