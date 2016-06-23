@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<script type="text/javascript" src="http://mbostock.github.com/d3/d3.min.js"></script>
+<div id="container"></div>
+    <head>
+        <meta charset="utf-8">
+        <style>
+            td, th {
+    padding: 2px 4px;
+}
+
+th {
+    font-weight: bold;
+}
+body {
+  font: 16px sans-serif;
+  background-color: #f2f2f2;
+}
+        </style>
+    </head>
+    <body>
+        
+
+        <script type="text/javascript"charset="utf-8">
+           function tabulate(data, columns) {
+    var table = d3.select("#container").append("table"),
+        thead = table.append("thead"),
+        tbody = table.append("tbody");
+
+    // append the header row
+    thead.append("tr")
+        .selectAll("th")
+        .data(columns)
+        .enter()
+        .append("th")
+            .text(function(column) { return column; });
+
+    // create a row for each object in the data
+    var rows = tbody.selectAll("tr")
+        .data(data)
+        .enter()
+        .append("tr");
+
+    // create a cell in each row for each column
+    var cells = rows.selectAll("td")
+        .data(function(row) {
+            return columns.map(function(column) {
+                return {column: column, value: row[column]};
+            });
+        })
+        .enter()
+        .append("td")
+            .text(function(d) { return d.value; });
+    
+    return table;
+}
+
+// create some people
+var people = [{"sepalLength":9,"sepalWidth":1,"pozivatelj":"Josip","vrijeme":"9:11","zapis":"dolazni poziv","trajanje":"0 min 20 sec"},
+{"sepalLength":7,"sepalWidth":1,"pozivatelj":"Miroslav","vrijeme":"7:23","zapis":"dolazni poziv","trajanje":"3 min 40 sec"},
+{"sepalLength":19,"sepalWidth":1,"pozivatelj":"Jelena","vrijeme":"19:04","zapis":"dolazni poziv","trajanje":"10 min 39 sec"},
+{"sepalLength":17,"sepalWidth":1,"pozivatelj":"Matea","vrijeme":"17:10","zapis":"dolazni poziv","trajanje":"30 min 22 sec"},
+{"sepalLength":21,"sepalWidth":2,"pozivatelj":"Matea","vrijeme":"20:50","zapis":"odbijeni poziv","trajanje":"0 min 0 sec"},
+{"sepalLength":14,"sepalWidth":3,"pozivatelj":"Dino","vrijeme":"13:48","zapis":"odbijeni poziv","trajanje":"0 min 0 sec"},
+{"sepalLength":1,"sepalWidth":1,"pozivatelj":"Željko","vrijeme":"1:03","zapis":"odlazni poziv","trajanje":"3 min 40 sec"},
+{"sepalLength":11,"sepalWidth":1,"pozivatelj":"Branko","vrijeme":"10:49","zapis":"odlazni poziv","trajanje":"13 min 23 sec"},
+{"sepalLength":11,"sepalWidth":3,"pozivatelj":"Matea","vrijeme":"10:50","zapis":"odbijeni poziv","trajanje":"0 min 0 sec"},
+{"sepalLength":24,"sepalWidth":5,"pozivatelj":"Dino","vrijeme":"23:48","zapis":"odbijeni poziv","trajanje":"0 min 0 sec"},
+{"sepalLength":24,"sepalWidth":10,"pozivatelj":"Dino","vrijeme":"23:48","zapis":"odbijeni poziv","trajanje":"0 min 0 sec"},
+{"sepalLength":17,"sepalWidth":10,"pozivatelj":"Matea","vrijeme":"16:50","zapis":"odbijeni poziv","trajanje":"0 min 0 sec"},
+{"sepalLength":24,"sepalWidth":14,"pozivatelj":"Dino","vrijeme":"23:48","zapis":"odbijeni poziv","trajanje":"0 min 0 sec"},
+{"sepalLength":21,"sepalWidth":15,"pozivatelj":"Mladen","vrijeme":"20:50","zapis":"odbijeni poziv","trajanje":"0 min 0 sec"},
+{"sepalLength":10.5,"sepalWidth":17,"pozivatelj":"Josip","vrijeme":"10:30","zapis":"odbijeni poziv","trajanje":"0 min 0 sec"},
+{"sepalLength":14,"sepalWidth":19,"pozivatelj":"Ivan","vrijeme":"13:48","zapis":"odbijeni poziv","trajanje":"0 min 0 sec"},
+{"sepalLength":21,"sepalWidth":20,"pozivatelj":"Matea","vrijeme":"20:50","zapis":"odbijeni poziv","trajanje":"0 min 0 sec"},
+{"sepalLength":24,"sepalWidth":21,"pozivatelj":"Dino","vrijeme":"23:48","zapis":"odbijeni poziv","trajanje":"0 min 0 sec"},
+{"sepalLength":21,"sepalWidth":21,"pozivatelj":"Matea","vrijeme":"20:50","zapis":"odbijeni poziv","trajanje":"0 min 0 sec"},
+{"sepalLength":4,"sepalWidth":23,"pozivatelj":"Lorna","vrijeme":"3:48","zapis":"odbijeni poziv","trajanje":"0 min 0 sec"},
+{"sepalLength":1,"sepalWidth":2,"pozivatelj":"Željko","vrijeme":"1:03","zapis":"odlazni poziv","trajanje":"3 min 40 sec"},
+{"sepalLength":11,"sepalWidth":2,"pozivatelj":"Branko","vrijeme":"10:49","zapis":"odlazni poziv","trajanje":"13 min 23 sec"},
+{"sepalLength":1,"sepalWidth":3,"pozivatelj":"Željko","vrijeme":"1:03","zapis":"odlazni poziv","trajanje":"3 min 40 sec"},
+{"sepalLength":11,"sepalWidth":3,"pozivatelj":"Branko","vrijeme":"10:49","zapis":"odlazni poziv","trajanje":"13 min 23 sec"},
+{"sepalLength":8,"sepalWidth":3,"pozivatelj":"Marijan","vrijeme":"8:02","zapis":"odlazni poziv","trajanje":"9 min 13 sec"},
+{"sepalLength":2,"sepalWidth":4,"pozivatelj":"Lovro","vrijeme":"2:11","zapis":"odlazni poziv","trajanje":"3 min 40 sec"},
+{"sepalLength":18,"sepalWidth":4,"pozivatelj":"Marta","vrijeme":"18:13","zapis":"odlazni poziv","trajanje":"2 min 43 sec"},
+{"sepalLength":12,"sepalWidth":5,"pozivatelj":"Ivan","vrijeme":"12:08","zapis":"odlazni poziv","trajanje":"13 min 23 sec"},
+{"sepalLength":1,"sepalWidth":8,"pozivatelj":"Željko","vrijeme":"1:03","zapis":"odlazni poziv","trajanje":"3 min 40 sec"},
+{"sepalLength":11,"sepalWidth":9,"pozivatelj":"Branko","vrijeme":"10:49","zapis":"odlazni poziv","trajanje":"13 min 23 sec"},
+{"sepalLength":8,"sepalWidth":10,"pozivatelj":"Marijan","vrijeme":"8:02","zapis":"odlazni poziv","trajanje":"9 min 13 sec"},
+{"sepalLength":8,"sepalWidth":11,"pozivatelj":"Marijan","vrijeme":"8:02","zapis":"odlazni poziv","trajanje":"9 min 13 sec"},
+{"sepalLength":2,"sepalWidth":11,"pozivatelj":"Lovro","vrijeme":"2:11","zapis":"odlazni poziv","trajanje":"3 min 40 sec"},
+{"sepalLength":18,"sepalWidth":12,"pozivatelj":"Marta","vrijeme":"18:13","zapis":"odlazni poziv","trajanje":"2 min 43 sec"},
+{"sepalLength":12,"sepalWidth":12,"pozivatelj":"Ivan","vrijeme":"12:08","zapis":"odlazni poziv","trajanje":"13 min 23 sec"},
+{"sepalLength":1,"sepalWidth":12,"pozivatelj":"Željko","vrijeme":"1:03","zapis":"odlazni poziv","trajanje":"3 min 40 sec"},
+{"sepalLength":11,"sepalWidth":12,"pozivatelj":"Branko","vrijeme":"10:49","zapis":"odlazni poziv","trajanje":"13 min 23 sec"},
+{"sepalLength":8,"sepalWidth":12,"pozivatelj":"Marijan","vrijeme":"8:02","zapis":"odlazni poziv","trajanje":"9 min 13 sec"},
+{"sepalLength":2,"sepalWidth":12,"pozivatelj":"Lovro","vrijeme":"2:11","zapis":"odlazni poziv","trajanje":"3 min 40 sec"},
+{"sepalLength":18,"sepalWidth":13,"pozivatelj":"Marta","vrijeme":"18:13","zapis":"odlazni poziv","trajanje":"2 min 43 sec"},
+{"sepalLength":12,"sepalWidth":13,"pozivatelj":"Ivan","vrijeme":"12:08","zapis":"odlazni poziv","trajanje":"13 min 23 sec"},
+{"sepalLength":1,"sepalWidth":14,"pozivatelj":"Željko","vrijeme":"1:03","zapis":"odlazni poziv","trajanje":"3 min 40 sec"},
+{"sepalLength":18,"sepalWidth":17,"pozivatelj":"Marta","vrijeme":"18:13","zapis":"odlazni poziv","trajanje":"2 min 43 sec"},
+{"sepalLength":12,"sepalWidth":17,"pozivatelj":"Ivan","vrijeme":"12:08","zapis":"odlazni poziv","trajanje":"13 min 23 sec"},
+{"sepalLength":1,"sepalWidth":18,"pozivatelj":"Željko","vrijeme":"1:03","zapis":"odlazni poziv","trajanje":"3 min 40 sec"},
+{"sepalLength":11,"sepalWidth":18,"pozivatelj":"Branko","vrijeme":"10:49","zapis":"odlazni poziv","trajanje":"13 min 23 sec"},
+{"sepalLength":8,"sepalWidth":18,"pozivatelj":"Marijan","vrijeme":"8:02","zapis":"odlazni poziv","trajanje":"9 min 13 sec"},
+{"sepalLength":2,"sepalWidth":19,"pozivatelj":"Lovro","vrijeme":"2:11","zapis":"odlazni poziv","trajanje":"3 min 40 sec"},
+{"sepalLength":18,"sepalWidth":19,"pozivatelj":"Marta","vrijeme":"18:13","zapis":"odlazni poziv","trajanje":"2 min 43 sec"},
+{"sepalLength":12,"sepalWidth":20,"pozivatelj":"Ivan","vrijeme":"12:08","zapis":"odlazni poziv","trajanje":"13 min 23 sec"},
+{"sepalLength":1,"sepalWidth":20,"pozivatelj":"Željko","vrijeme":"1:03","zapis":"odlazni poziv","trajanje":"3 min 40 sec"},
+{"sepalLength":11,"sepalWidth":22,"pozivatelj":"Branko","vrijeme":"10:49","zapis":"odlazni poziv","trajanje":"13 min 23 sec"},
+{"sepalLength":8,"sepalWidth":22,"pozivatelj":"Marijan","vrijeme":"8:02","zapis":"odlazni poziv","trajanje":"9 min 13 sec"},
+{"sepalLength":2,"sepalWidth":22,"pozivatelj":"Lovro","vrijeme":"2:11","zapis":"odlazni poziv","trajanje":"3 min 40 sec"},
+{"sepalLength":18.5,"sepalWidth":23,"pozivatelj":"Lorna","vrijeme":"18:33","zapis":"odlazni poziv","trajanje":"2 min 43 sec"},
+{"sepalLength":12,"sepalWidth":23,"pozivatelj":"Ivan","vrijeme":"12:08","zapis":"odlazni poziv","trajanje":"13 min 23 sec"},
+{"sepalLength":18,"sepalWidth":29,"pozivatelj":"Marta","vrijeme":"18:13","zapis":"odlazni poziv","trajanje":"2 min 43 sec"},
+{"sepalLength":12,"sepalWidth":29,"pozivatelj":"Ivan","vrijeme":"12:08","zapis":"odlazni poziv","trajanje":"13 min 23 sec"},
+{"sepalLength":4,"sepalWidth":2,"pozivatelj":"Igor","vrijeme":"4:12","zapis":"dolazni poziv","trajanje":"2 min 43 sec"},
+{"sepalLength":5.5,"sepalWidth":3,"pozivatelj":"Stjepan","vrijeme":"5:27","zapis":"dolazni poziv","trajanje":"3 min 40 sec"},
+{"sepalLength":6.5,"sepalWidth":3,"pozivatelj":"Sara","vrijeme":"6:34","zapis":"dolazni poziv","trajanje":"9 min 13 sec"},
+{"sepalLength":6.5,"sepalWidth":6,"pozivatelj":"Sara","vrijeme":"6:34","zapis":"dolazni poziv","trajanje":"9 min 13 sec"},
+{"sepalLength":20,"sepalWidth":6,"pozivatelj":"Marta","vrijeme":"19:53","zapis":"dolazni poziv","trajanje":"2 min 43 sec"},
+{"sepalLength":4.5,"sepalWidth":6,"pozivatelj":"Ivan","vrijeme":"4:28","zapis":"dolazni poziv","trajanje":"13 min 23 sec"},
+{"sepalLength":9.5,"sepalWidth":6,"pozivatelj":"Željko","vrijeme":"9:33","zapis":"dolazni poziv","trajanje":"3 min 40 sec"},
+{"sepalLength":4,"sepalWidth":8,"pozivatelj":"Igor","vrijeme":"4:12","zapis":"dolazni poziv","trajanje":"2 min 43 sec"},
+{"sepalLength":5.5,"sepalWidth":8,"pozivatelj":"Stjepan","vrijeme":"5:27","zapis":"dolazni poziv","trajanje":"3 min 40 sec"},
+{"sepalLength":20,"sepalWidth":8,"pozivatelj":"Marta","vrijeme":"19:53","zapis":"dolazni poziv","trajanje":"2 min 43 sec"},
+{"sepalLength":4.5,"sepalWidth":9,"pozivatelj":"Ivan","vrijeme":"4:28","zapis":"dolazni poziv","trajanje":"13 min 23 sec"},
+{"sepalLength":9.5,"sepalWidth":10,"pozivatelj":"Željko","vrijeme":"9:33","zapis":"dolazni poziv","trajanje":"3 min 40 sec"},
+{"sepalLength":13,"sepalWidth":10,"pozivatelj":"Branko","vrijeme":"12:49","zapis":"dolazni poziv","trajanje":"13 min 23 sec"},
+{"sepalLength":5.5,"sepalWidth":11,"pozivatelj":"Stjepan","vrijeme":"5:27","zapis":"dolazni poziv","trajanje":"3 min 40 sec"},
+{"sepalLength":6.5,"sepalWidth":11,"pozivatelj":"Sara","vrijeme":"6:34","zapis":"dolazni poziv","trajanje":"9 min 13 sec"},
+{"sepalLength":15,"sepalWidth":12,"pozivatelj":"Maja","vrijeme":"14:56","zapis":"dolazni poziv","trajanje":"41 min 33 sec"},
+{"sepalLength":20,"sepalWidth":12,"pozivatelj":"Marta","vrijeme":"19:53","zapis":"dolazni poziv","trajanje":"2 min 43 sec"},
+{"sepalLength":4.5,"sepalWidth":12,"pozivatelj":"Ivan","vrijeme":"4:28","zapis":"dolazni poziv","trajanje":"13 min 23 sec"},
+{"sepalLength":9.5,"sepalWidth":13,"pozivatelj":"Željko","vrijeme":"9:33","zapis":"dolazni poziv","trajanje":"3 min 40 sec"},
+{"sepalLength":13,"sepalWidth":13,"pozivatelj":"Branko","vrijeme":"12:49","zapis":"dolazni poziv","trajanje":"13 min 23 sec"},
+{"sepalLength":4,"sepalWidth":14,"pozivatelj":"Igor","vrijeme":"4:12","zapis":"dolazni poziv","trajanje":"2 min 43 sec"},
+{"sepalLength":5.5,"sepalWidth":14,"pozivatelj":"Stjepan","vrijeme":"5:27","zapis":"dolazni poziv","trajanje":"3 min 40 sec"},
+{"sepalLength":6.5,"sepalWidth":15,"pozivatelj":"Sara","vrijeme":"6:34","zapis":"dolazni poziv","trajanje":"9 min 13 sec"},
+{"sepalLength":6.5,"sepalWidth":21,"pozivatelj":"Sara","vrijeme":"6:34","zapis":"dolazni poziv","trajanje":"9 min 13 sec"},
+{"sepalLength":15,"sepalWidth":22,"pozivatelj":"Maja","vrijeme":"14:56","zapis":"dolazni poziv","trajanje":"41 min 33 sec"},
+{"sepalLength":20,"sepalWidth":23,"pozivatelj":"Marta","vrijeme":"19:53","zapis":"dolazni poziv","trajanje":"2 min 43 sec"},
+{"sepalLength":4.5,"sepalWidth":23,"pozivatelj":"Ivan","vrijeme":"4:28","zapis":"dolazni poziv","trajanje":"13 min 23 sec"},
+{"sepalLength":9.5,"sepalWidth":23,"pozivatelj":"Željko","vrijeme":"9:33","zapis":"dolazni poziv","trajanje":"3 min 40 sec"},
+{"sepalLength":4,"sepalWidth":23,"pozivatelj":"Igor","vrijeme":"4:12","zapis":"dolazni poziv","trajanje":"2 min 43 sec"},
+{"sepalLength":5.5,"sepalWidth":24,"pozivatelj":"Stjepan","vrijeme":"5:27","zapis":"dolazni poziv","trajanje":"3 min 40 sec"},
+{"sepalLength":6.5,"sepalWidth":24,"pozivatelj":"Sara","vrijeme":"6:34","zapis":"dolazni poziv","trajanje":"9 min 13 sec"},
+{"sepalLength":15,"sepalWidth":24,"pozivatelj":"Maja","vrijeme":"14:56","zapis":"dolazni poziv","trajanje":"41 min 33 sec"},
+{"sepalLength":9.5,"sepalWidth":25,"pozivatelj":"Željko","vrijeme":"9:33","zapis":"dolazni poziv","trajanje":"3 min 40 sec"},
+{"sepalLength":6.5,"sepalWidth":27,"pozivatelj":"Sara","vrijeme":"6:34","zapis":"dolazni poziv","trajanje":"9 min 13 sec"},
+{"sepalLength":20,"sepalWidth":28,"pozivatelj":"Marta","vrijeme":"19:53","zapis":"dolazni poziv","trajanje":"2 min 43 sec"},
+{"sepalLength":4.5,"sepalWidth":29,"pozivatelj":"Ivan","vrijeme":"4:28","zapis":"dolazni poziv","trajanje":"13 min 23 sec"},
+{"sepalLength":9.5,"sepalWidth":29,"pozivatelj":"Željko","vrijeme":"9:33","zapis":"dolazni poziv","trajanje":"3 min 40 sec"}];
+
+// render the table
+var peopleTable = tabulate(people, ["pozivatelj", "vrijeme", "zapis", "trajanje"]);
+
+// uppercase the column headers
+peopleTable.selectAll("thead th")
+    .text(function(column) {
+        return column.charAt(0).toUpperCase() + column.substr(1);
+    });
+    
+// sort by age
+peopleTable.selectAll("tbody tr")
+    .sort(function(a, b) {
+        return d3.descending(a.age, b.age);
+    });
+        </script>
+    </body>
+</html>

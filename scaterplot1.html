@@ -170,7 +170,7 @@ var color = d3.scale.category10();
 var xAxis = d3.svg.axis()
     .scale(x)
     .orient("bottom")
-    .tickValues([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31]);;
+    .tickValues([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]);;
 
 var yAxis = d3.svg.axis()
     .scale(y)
@@ -199,7 +199,7 @@ var svg = d3.select("body").append("svg")
 svg.call(tip);
 
 
-d3.tsv("data.tsv", function(error, data) {
+d3.tsv("data1.tsv", function(error, data) {
   if (error) throw error;
 
   data.forEach(function(d) {
@@ -356,6 +356,7 @@ function buttonclicks6(){
 function buttonclickt6(){
   window.location="table6.html";
 }
+
 
 
 
